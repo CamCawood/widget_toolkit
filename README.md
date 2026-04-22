@@ -59,6 +59,6 @@ Provides methods to:
 ## Installation
 
 ```bash
-git clone https://github.com/your-username/widget_toolkit.git
+git clone https://github.com/CamCawood/widget_toolkit.git
 cd widget_toolkit
 pip install customtkinter
