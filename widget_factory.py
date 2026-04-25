@@ -1,6 +1,6 @@
 import tkinter as tk
 import customtkinter as ct
-
+from PIL import Image
 
 class WidgetConfigHelper:
     """Helper class for configuring widget values and applying defaults."""
@@ -142,6 +142,17 @@ class WidgetConfigHelper:
         if details.get("master") is None:
             raise ValueError("Missing required argument: 'master'")
 
+class ImageLoader:
+    """Class for loading the image"""
+    def load_image(self,file,size:tuple):
+        """"""
+        image = ct.CTkImage(
+            light_image=Image.open(file),
+            dark_image=Image.open(file),
+            size=size
+            )
+        return image
+
 
 class CreateWidgets:
     """Class for creating Tkinter and CustomTkinter widgets."""
@@ -163,6 +174,7 @@ class CreateWidgets:
             font=self.config.get_font(label_details),
             text_color=self.config.get_text_color(label_details),
             wraplength=self.config.get_wraplength(label_details),
+            
         )
         label.grid(
             row=row,
@@ -188,6 +200,9 @@ class CreateWidgets:
             font=self.config.get_font(button_details),
             text_color=self.config.get_text_color(button_details),
             command=button_details.get("command"),
+            image=button_details.get("image"),
+            hover_color=button_details.get("hover_color"),
+            fg_color=button_details.get("fg_color")
         )
         button.grid(
             row=row,
@@ -258,6 +273,10 @@ class CreateWidgets:
             width=self.config.get_width(textbox_details),
             height=self.config.get_height(textbox_details),
             wrap=tk.WORD,
+            fg_color=textbox_details.get("fg_color"),
+            border_color=textbox_details.get("border_color"),
+            border_width=textbox_details.get("border_width"),
+            text_color=textbox_details.get("text_color")
         )
         textbox.grid(
             row=row,
@@ -301,6 +320,11 @@ class CreateWidgets:
             font=self.config.get_font(entry_details),
             width=self.config.get_width(entry_details),
             placeholder_text=entry_details.get("placeholder_text"),
+            fg_color=entry_details.get("fg_color"),
+            border_color=entry_details.get("border_color"),
+            border_width=entry_details.get("border_width"),
+            placeholder_text_color=entry_details.get("placeholder_text_color"),
+            text_color=entry_details.get("text_color")
         )
         entry.grid(
             row=row,
